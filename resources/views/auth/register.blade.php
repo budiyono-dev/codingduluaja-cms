@@ -6,6 +6,9 @@
     @endif
     <form action="{{route('auth.register.action', absolute: false)}}" method="post">
         @csrf
+        <label for="name">name</label>
+        <input type="text" name="name" id="name">
+
         <label for="email">email</label>
         <input type="email" name="email" id="email">
 
