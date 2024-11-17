@@ -45,12 +45,9 @@ class AuthController extends Controller
             array_key_exists('rememberMe', $validated))) {
             $request->session()->regenerate();
 
-            Mail::to('budiyono.dev@gmail.com')
-                ->send(new EmailVerification());
-
             defer(function () use ($request) {
                 info('send email verification');
-                Mail::to('budiyono.dev@gmai.com')
+                Mail::to('budiyono.dev@gmail.com')
                     ->send(new EmailVerification());
             });
             return redirect()->intended('/');
