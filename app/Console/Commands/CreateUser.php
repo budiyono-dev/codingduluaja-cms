@@ -10,27 +10,14 @@ use Illuminate\Support\Str;
 
 class CreateUser extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'app:create-user {user-data}';
+    protected $description = 'Create user admin and create user writer with auto verify email, userData {name,email,password,role}';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create user admin and create user writer, userData {name;email;password;role}';
-
-    /**
-     * Execute the console command.
-     */
     public function handle()
     {
         $args = $this->argument('user-data');
         $arr = explode(',', $args);
+        info('create user from console = '.$args);
 
         $validator = Validator::make([
             'name' => $arr[0],
@@ -50,11 +37,14 @@ class CreateUser extends Command
         }
 
         $validated = $validator->validated();
-        User::create([
+        $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
+            'password' => Hash::make($validated['password'])
         ]);
+
+        $user->email_verified_at = now();
+        $user->save();
 
         $this->info('User created successfully');
     }

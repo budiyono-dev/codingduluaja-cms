@@ -41,15 +41,11 @@ class AuthController extends Controller
             'rememberMe' => '',
         ]);
 
+
         if (Auth::attempt(['email' => $validated['email'], 'password' => $validated['password']],
             array_key_exists('rememberMe', $validated))) {
             $request->session()->regenerate();
 
-            defer(function () use ($request) {
-                info('send email verification');
-                Mail::to('budiyono.dev@gmail.com')
-                    ->send(new EmailVerification());
-            });
             return redirect()->intended('/');
         }
         return redirect()->back()->withErrors('Invalid Username/Password');
@@ -73,12 +69,21 @@ class AuthController extends Controller
         return redirect()->route('auth.login.page');
     }
 
+    public function sendEmail(string $receiver)
+    {
+        defer(function () use ($request) {
+            info('send email verification');
+            Mail::to('budiyono.dev@gmail.com')
+                ->send(new EmailVerification());
+        });
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect()->route('auth.login.page');
     }
 
     public function forgotPassword(Request $request)
