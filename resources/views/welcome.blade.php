@@ -3,6 +3,6 @@
 @section('main')
     <form action="{{route('auth.logout.action')}}" method="post">
         @csrf
-        <button type="submit">logout</button>
+        <button type="submit" class="btn btn-primary btn-sm">logout</button>
     </form>
 @endsection
