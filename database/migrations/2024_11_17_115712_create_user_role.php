@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -15,13 +15,13 @@ return new class extends Migration
         });
 
         DB::table('user_role')->insert([
-            ['code'=>'ADMIN'],['code'=>'USER'],['code'=>'WRITER']
+            ['code' => 'ADMIN'], ['code' => 'USER'], ['code' => 'WRITER'],
         ]);
 
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('role_id');
             $table->boolean('is_member');
-            $table->foreign('role_id')->references('id')->on('user_role');   
+            $table->foreign('role_id')->references('id')->on('user_role');
         });
 
     }

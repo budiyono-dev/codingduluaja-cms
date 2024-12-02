@@ -6,11 +6,11 @@ use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class CreateUser extends Command
 {
     protected $signature = 'app:create-user {user-data}';
+
     protected $description = 'Create user admin and create user writer with auto verify email, userData {name,email,password,role}';
 
     public function handle()
@@ -33,6 +33,7 @@ class CreateUser extends Command
 
         if ($validator->fails()) {
             $this->error($validator->errors()->first());
+
             return;
         }
 
@@ -40,7 +41,7 @@ class CreateUser extends Command
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'password' => Hash::make($validated['password'])
+            'password' => Hash::make($validated['password']),
         ]);
 
         $user->email_verified_at = now();

@@ -4,16 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Codingduluaja CMS</title>
+    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-    @if(config('app.cdn'))
-        <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
-        <script src="https://cdn.tailwindcss.com"></script>
-    @else
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @endif
 
 </head>
-<body class="font-sans antialiased dark:bg-black dark:text-white/50">
+<body>
     @yield('main')
+    <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('assets/js/main.js')}}"></script>
 </body>
 </html>
