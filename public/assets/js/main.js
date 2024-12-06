@@ -8,3 +8,7 @@ $('#btnShowPassword').click(function(e){
         e.target.innerHTML = 'Show';
     }
 });
+
+$('#toggleDarkMode').change(function(){
+    $('body').toggleClass('bg-theme-dark');
+});

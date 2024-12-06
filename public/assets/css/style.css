@@ -1,9 +1,54 @@
 :root {
-    --primary: #003349;
-    --white: #fafaf6;
+    --cda-primary: #003349;
+    --cda-white: #fafaf6;
+    --cda-black: #1B1B1B;
+
+    --cda-black2: #0f172a;
+    --cda-black3: #1a202c;
+
+    --primary-txt: #f0f0f0;
+    --secondary-txt: #ccc;
+    --accent-color: #0099ff;
+    --bg-color: #0f172a;
+    --card-color: #1a202c;
+
+    --black2:#1F1F1F;
 }
 
-html,body{
-    background-color: var(--primary);
-    color: var(--white);
+html, body {
+    font-family: Arial, Helvetica, sans-serif;
+    /*background-color: var(--primary);*/
+    /*color: var(--white);*/
+    background-color: var(--cda-white);
+    margin: 0;
+    padding: 0;
+}
+
+.bg-cda-black {
+    background: linear-gradient(to bottom, #4f4f4f, #0E0E12);
+    color: var(--cda-white);
+}
+
+.bg-cda-primary {
+    background-color: var(--cda-primary)!important;
+    color: var(--cda-white);
+}
+
+.cda-brand {
+    font-weight: bold;
+    font-size: 1.7rem;
+    color: inherit;
+}
+
+.toggle-dark-mode {
+    color: var(--cda-white);
+}
+
+/*.container {*/
+/*    background-color: var(--cda-white);*/
+/*}*/
+
+.bg-theme-dark {
+    background-color: var(--cda-black);
+    color: var(--cda-white);
 }
